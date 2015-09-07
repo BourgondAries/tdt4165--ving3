@@ -1,0 +1,58 @@
+Task 1
+	"A free variable is a variable used within a function, which is neither a formal parameter to the function nor defined in the function's body (and in scope at the point of the variable's use)." - c2
+	It thusly doesn't make any sense for a), b), and d) to talk about free or bound variables because they're not functions.
+	Even if we assumed these were function bodies we simply can not see the function signature and infer which variables are parameters to this body.
+	a) -
+	b) -
+	c) E and C are free variables, B and A are bound.
+	d) -
+
+Task 2
+	a) E C U
+	b) E
+	c) /
+	d) E U
+	e) E
+
+Task 3
+	a)
+		Append = proc {$ As Bs ?Out}
+			case As of nil then
+				Out = Bs
+			else
+				case As of '|'(A Ar) then
+					local X in
+						{Append Ar Bs X}
+						Out = '|'(A X)
+					end
+				end
+			end
+		end
+
+	b)
+		Max = proc {$ X Y ?Out}
+			if X==0 then
+				Out = Y
+			else
+				if Y==0 then
+					Out = X
+				else
+					Out = 1+{Max X-1 Y-1}
+				end
+			end
+		end
+
+Task 4
+	<s> ::= local <x> ... <x_n> in <s> end
+
+Task 5
+	a) SAS: B - SS: [ if B | [ skip | skip ] ] => ?
+	b) SAS: B = false - SS: [ if | [ skip | skip ] ] => [ skip ]
+	c) SAS: X = 4 Z = 7 P = proc {$ X Y} Y = X + Z end
+
+Task 6
+	a) Fails - Due to a rebinding that basically states 2 = 3, which is false.
+	b) Succeeds - A = a, B = a, C = a
+	c) Succeeds - When A = 3|4|B|nil, [1 2 3 4 B]
+	d) Succeeds - B = nil and A = 2, only then, [1 2 nil 3 4]
+	e) Fails - due to a recursive definition
